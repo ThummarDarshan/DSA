@@ -1,0 +1,100 @@
+You are given an integer n and an array arr of size n, where each element is an integer between 1 and n (inclusive). Some numbers in the range from 1 to n are missing, and the array may contain duplicate values. Your task is to find all the missing numbers from the range 1 to n and return them in ascending order.
+
+Input Format
+
+The first line contains an integer 𝑛 — the upper bound of the range.
+The third line contains 𝑚 integers ranging from 1 to n — the elements of the array.
+Constraints
+
+The input guarantees that n and arr are valid as per the constraints.
+
+Output Format
+
+Print all the missing numbers in ascending order, separated by spaces.
+If no numbers are missing, print -1.
+Sample Input 0
+
+5  
+1 2 2 3 4
+Sample Output 0
+
+5
+Explanation 0
+
+The range is 1 to 5. Number 5 is missing, and the array contains duplicates of 2.
+
+Sample Input 1
+
+7  
+1 2 3 4 4 5 6
+Sample Output 1
+
+7
+Explanation 1
+
+The range is 1 to 7, and the missing number is 7.
+
+Sample Input 2
+
+4  
+1 2 3 4
+Sample Output 2
+
+-1
+Explanation 2
+
+All numbers from 1 to 4 are present, so there are no missing numbers.
+
+Sample Input 3
+
+5  
+1 2 2 3 4
+Sample Output 3
+
+5
+
+
+CDOE :-
+
+
+#include <iostream>
+
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n,j;
+     cin>>n;
+    int arr[n];
+    bool miss=false;
+    int nwew[n+1]={0};
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+      
+             j=arr[i];
+            nwew[j] +=1;
+       
+    }
+  
+    for(int j=1 ; j<=n;j++)
+    {
+        if(nwew[j]==0)
+        {
+            cout<<j<<" ";
+            
+            miss=true;
+            
+        }
+       
+    }
+    
+    if(!miss)
+    {
+        cout<<"-1";
+    }
+    
+    return 0;
+}
