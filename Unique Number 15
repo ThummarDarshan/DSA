@@ -1,0 +1,71 @@
+Write a program to find non repeating element in an array (Unique element)
+
+Input : The number of elements, and an array.
+
+Output: Return non repeating number
+
+Input Format
+
+-- first line contains N no. of array elements --Second line contains N elements separated by space
+
+Constraints
+
+-
+
+Output Format
+
+-- print unique number
+
+Sample Input 0
+
+5
+1 2 3 2 1
+Sample Output 0
+
+3
+
+
+CODE :-
+
+
+#include <iostream>
+
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n,j;
+     cin>>n;
+    int arr[n];
+    bool miss=false;
+    int nwew[n+1]={0};
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+      
+             j=arr[i];
+            nwew[j] +=1;
+       
+    }
+  
+    for(int j=1 ; j<=n;j++)
+    {
+        if(nwew[j]==1)
+        {
+            cout<<j<<" ";
+            
+            miss=true;
+            
+        }
+       
+    }
+    /*
+    if(!miss)
+    {
+        cout<<"-1";
+    }*/
+    
+    return 0;
+}
