@@ -1,3 +1,4 @@
+
 You are given an integer n and an array arr of size n, where each element is an integer between 1 and n (inclusive). Some numbers in the range from 1 to n are missing, and the array may contain duplicate values. Your task is to find all the missing numbers from the range 1 to n and return them in ascending order.
 
 Input Format
