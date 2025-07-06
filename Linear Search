@@ -1,0 +1,98 @@
+Implement Linear Search using array data structure.
+
+Input Format
+
+First line contains number of total elements n
+second line contain n array elements
+Last line contains x , a value that to be searched from the array
+Output Format
+
+If x is present in the array, then its index will be printed.
+
+If x is not present in the array, then this line must be printed "Element x is not present in the array.
+
+Last line of output shows the number of comparisons required to find the element x
+
+Sample Input 0
+
+6
+5 40 15 20 25 50
+25
+Sample Output 0
+
+4
+5
+Sample Input 1
+
+5
+2 3 4 10 40
+10
+Sample Output 1
+
+3
+4
+Sample Input 2
+
+7
+10 30 40 100 140 190 210
+160
+Sample Output 2
+
+Element 160 is not present in the array
+7
+
+
+code :-
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+void lsearch(int a[],int n , int key,int index ,int cmp)
+{
+   
+  
+     if(index==n)
+       {
+           cout<<"Element "<< key <<" is not present in the array"<<endl;
+           cout<<cmp;
+         return;
+       }
+    cmp++;
+    if(a[index]==key)
+    {
+        cout<<index<<endl;
+        cout<<cmp;
+        return;
+    }
+    else
+        return lsearch(a,n,key,index+1,cmp);
+    
+   
+}
+
+int main() {
+    // Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    //iterative 
+    int n,cmp=0,i=0,index=0;
+    cin>>n;
+    
+    int a[n];
+    
+    for(int i=0 ; i< n ; i++)
+    {
+        cin>>a[i];
+    }
+    int key;
+    cin>>key;
+   
+    
+    
+   
+    lsearch(a,n,key,index,cmp);
+    return 0;
+}
