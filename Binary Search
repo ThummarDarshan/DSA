@@ -1,0 +1,144 @@
+Instructor has the sorted list (according to roll numbers in ascending order) in which roll numbers and submission time are stored of those students who have submitted the program after its deadline.
+
+Help Instructor to check whether particular student has submitted the program or not. If yes, then submission time should be displayed. If not, then “Not submitted” message should be printed.
+
+Explanation :
+
+Sample Input:
+
+n=5
+
+roll numbers : 67,89,95,96,99
+
+submission times: 65,69,62,64,61
+
+roll_no_tosearch : 99
+
+Sample output:
+
+61
+
+Sample Input:
+
+n=5
+
+roll numbers : 67,89,95,96,99
+
+submission times: 65,69,62,64,61
+
+roll_no_tosearch : 100
+
+Sample output:
+
+" Not submitted".
+
+Input Format
+
+First line contains the integer, the number of students n
+next lines have two integers , roll_no and submission time for n students.
+Third Line is interger, roll_no_tosearch
+Constraints
+
+1<n<50
+1<roll_no<190
+60<submission time<300
+1<roll_no_tosearch<190
+Output Format
+
+First line contains the submissiontime of the roll_no_tosearch.
+Second line contains number of comparisons required in Binary search.
+If the roll_no_tosearch is not in the list, then "Not Submitted" message is the output.
+Sample Input 0
+
+5
+67 65
+89 69
+95 62
+96 64
+99 61
+99
+Sample Output 0
+
+61
+3
+Sample Input 1
+
+5
+67 65
+89 69
+95 62
+96 64
+99 61
+100
+Sample Output 1
+
+Not submitted
+
+
+code :-
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int binarySearch(int roll[], int time[], int key, int l, int h, int &cmp)
+{
+    if (l > h) 
+    {
+        return -1; 
+    }
+
+    int mid = (l + h) / 2;
+    cmp++; 
+
+    if (roll[mid] == key) 
+    {
+        return mid;
+    } 
+    else if (roll[mid] > key) 
+    {
+        return binarySearch(roll, time, key, l, mid - 1, cmp);
+    } 
+    else
+    {
+        return binarySearch(roll, time, key, mid + 1, h, cmp);
+    }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    int roll[n], time[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> roll[i] >> time[i];
+    }
+
+    int key;
+    cin >> key;
+
+    int cmp = 0;
+
+    int result = binarySearch(roll, time, key, 0, n - 1, cmp);
+
+    if (result != -1) {
+        cout << time[result] << endl;
+         cout << cmp;
+    } 
+    else 
+    {
+        cout << "Not submitted" << endl;
+    }
+
+   
+
+    return 0;
+}
