@@ -1,0 +1,306 @@
+Instructors have given one problem to students. Students have to solve and implement the program in maximum 60 minutes. After contest, Instructor has the submission time (in minutes) in which every student has submitted the correct solution.
+
+Help the instructor to find the top 2 students who have submitted correct problem fastest. Also, instructor wants to know the time taken by a particular student based on his/her roll number.
+
+Input for this program is roll number, roll_no and time to submit the solution in minutes, submissiontime for n students.
+
+Explanation:
+
+Input will be: n=5 (number of students)
+
+roll_no: 1,4,5,7,10
+
+submissiontime= 34,60,42,35,21
+
+1 (for Bubble Sort)
+
+2 (for Selection Sort)
+
+Output can be:
+
+case 1: Bubble Sort :
+
+21,34,35,42,60
+
+No of swaps : 7
+
+case 2: Selection Sort :
+
+21,34,35,42,60
+
+No of swaps : 3
+
+Top 2 students : roll no : 10 and 1
+
+Input Format
+
+First line contains the integer, the number of students n
+next lines have two integers , roll_no and submission time for n students.
+Third Line is interger, either 1. for bubble sort or 2 for selection sort
+Constraints
+
+1 < n < 50
+1 < roll_no < 190 ; 1 < submission time < 60
+Output Format
+
+First line is sorted data according to time.
+next line of output shows the number of comparisons required to sort data.
+next line is number of swaps required to sort data.
+Next line is top two performers' roll numbers.
+Sample Input 0
+
+6
+6 35
+7 30
+5 20
+10 25
+12 40
+1 22
+1
+Sample Output 0
+
+5 20
+1 22
+10 25
+7 30
+6 35
+12 40
+15
+9
+5,1
+Sample Input 1
+
+6
+6 35
+7 30
+5 20
+10 25
+12 40
+1 22
+2
+Sample Output 1
+
+5 20
+1 22
+10 25
+7 30
+6 35
+12 40
+15
+5
+5,1
+Sample Input 2
+
+10
+6 25
+10 32
+1 34
+2 40
+5 42
+9 44
+7 45
+6 49
+12 53
+15 59
+1
+Sample Output 2
+
+6 25
+10 32
+1 34
+2 40
+5 42
+9 44
+7 45
+6 49
+12 53
+15 59
+9
+0
+6,10
+Sample Input 3
+
+10
+6 25
+10 32
+1 34
+2 40
+5 42
+9 44
+7 45
+6 49
+12 53
+15 59
+2
+Sample Output 3
+
+6 25
+10 32
+1 34
+2 40
+5 42
+9 44
+7 45
+6 49
+12 53
+15 59
+45
+0
+6,10
+Sample Input 4
+
+10
+15 59
+12 53
+6 49
+7 45
+9 44
+5 42
+2 40
+1 34
+10 32
+6 25
+1
+Sample Output 4
+
+6 25
+10 32
+1 34
+2 40
+5 42
+9 44
+7 45
+6 49
+12 53
+15 59
+45
+45
+6,10
+Sample Input 5
+
+10
+15 59
+12 53
+6 49
+7 45
+9 44
+5 42
+2 40
+1 34
+10 32
+6 25
+2
+Sample Output 5
+
+6 25
+10 32
+1 34
+2 40
+5 42
+9 44
+7 45
+6 49
+12 53
+15 59
+45
+5
+6,10
+
+
+
+code :-
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    
+    int n;
+    int choise,cmp=0,totalswap=0;
+    cin>>n;
+    
+       
+    int id[n],subtime[n];
+    
+    for(int i=0 ; i<n ; i++)
+    {
+        cin>>id[i];
+        cin>>subtime[i];
+    }
+    cin>>choise;
+    
+    switch(choise)
+    {
+        case 1 :
+            //Bobble sort
+            int swapc;
+            for(int i=0 ; i<n-1 ; i++)
+            { 
+                swapc = 0;
+                for(int j=0 ; j< n-i-1 ; j++)
+                {
+                   
+                    cmp++;
+                    if(subtime[j]>subtime[j+1])
+                    {
+                        swap(subtime[j],subtime[j+1]);
+                        swap(id[j],id[j+1]);
+                        swapc++;
+                        totalswap++;
+                    }
+                }
+                 if(swapc==0 )
+                {
+                    break;
+                }
+            }
+          break;
+            
+            
+    
+    
+    
+        case 2 :
+            // Selection sort
+    
+            for (int i=0; i<n-1; i++) 
+            {
+                int min_index=i;
+        
+                for (int j=i+1; j< n; j++) 
+                {
+                    cmp++;
+                    if (subtime[min_index] > subtime[j]) 
+                    {
+                        min_index = j;
+                    }
+                }
+
+                if(min_index != i) 
+                {
+                   swap(subtime[i], subtime[min_index]);
+                    swap(id[i], id[min_index]);
+                    totalswap++;
+                }
+            }  
+            break;
+    }
+    
+    for (int j = 0; j < n; j++) 
+    {
+        cout<<id[j]<<" "<<subtime[j]<<endl;
+    }
+
+    cout<<cmp<<endl;
+    cout<<totalswap<<endl;
+    cout<<id[0]<<","<<id[1]<<endl;
+
+    
+    return 0;
+}
