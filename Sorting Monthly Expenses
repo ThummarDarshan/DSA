@@ -1,0 +1,84 @@
+You have a list of monthly expenses that you'd like to organize in ascending order. These expenses vary each month, and you want to find a way to quickly sort them for better budget management.
+
+Your task is to write a program that takes a list of monthly expenses. sort them in ascending order. This will help you better track your monthly spending and identify patterns in your expenses.
+
+While applying the sorting, you have to make sure that new element has to be inserted to the sorted result.
+
+Consider an example: arr[]: {12, 11, 13, 5, 6}
+
+First Pass : 11 12 13 5 6
+
+Second Pass: 11 12 13 5 6
+
+Third Pass : 5 11 12 13 6
+
+Fourth Pass: 5 6 11 12 13
+
+Input Format
+
+An integer n (1 <= n <= 100) representing the number of monthly expenses.
+A list of n positive integers, where each integer represents a monthly expense amount (1 <= expense <= 10000).
+Constraints
+
+Do not use any built-in sorting functions or libraries.
+Output Format
+
+A list of the same n monthly expenses, sorted in ascending order.
+Sample Input 0
+
+3
+12 40 39
+Sample Output 0
+
+12 39 40
+
+code :-
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n;
+    cin>>n;
+    int expence[n];
+    
+    for(int i=0; i<n ; i++)
+    {
+        cin>>expence[i]; 
+    }
+    
+     for (int i=0; i<n-1; i++) 
+    {
+        int min_index=i;
+        
+        for (int j=i+1; j< n; j++) 
+        {
+       
+            if (expence[min_index] > expence[j]) 
+            {
+                min_index = j;
+            }
+        }
+
+        if(min_index != i) 
+        {
+            swap(expence[i], expence[min_index]);                 
+        }
+    }  
+       
+    for(int i=0;i<n;i++)
+    {
+        cout<<expence[i]<<" ";
+    }
+    
+    
+    
+    
+    return 0;
+}
