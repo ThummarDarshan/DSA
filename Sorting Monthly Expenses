@@ -1,3 +1,4 @@
+
 You have a list of monthly expenses that you'd like to organize in ascending order. These expenses vary each month, and you want to find a way to quickly sort them for better budget management.
 
 Your task is to write a program that takes a list of monthly expenses. sort them in ascending order. This will help you better track your monthly spending and identify patterns in your expenses.
